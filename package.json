@@ -10,9 +10,9 @@
     "deploy": "npx serverless deploy"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.6",
-    "ethers": "^6.10.0",
     "express": "^4.19.2",
+    "ethers": "^6.10.0",
+    "@supabase/supabase-js": "^2.39.6",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
