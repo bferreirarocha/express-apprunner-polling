@@ -14,20 +14,15 @@ const PORT = process.env.PORT || 3000;
 app.get("/health", (req, res) => res.send("✅ App Runner is alive"));
 
 // Funzione finta di polling
-async function checkPendingTransactions() {
-  console.log("🔁 Polling...");
-  const { data, error } = await supabase
-    .from("orders")
-    .select("*")
-    .eq("status", "waiting")
-    .not("pre_order_payment_tx", "is", null)
-    .limit(5);
+console.log("✅ Polling worker avviato");
 
-  if (error) console.error("❌ Supabase error:", error);
-  else console.log("📦 Orders:", data?.length);
+function checkPendingTransactions() {
+  const timestamp = new Date().toISOString();
+  console.log(`🔁 Polling eseguito alle ${timestamp}`);
+  // Simula logica di polling (da sostituire con vera logica in futuro)
 }
 
-// Polling automatico ogni 15s
+// Poll ogni 15 secondi
 setInterval(checkPendingTransactions, 15000);
 
 app.listen(PORT, () => {
