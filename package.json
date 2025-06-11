@@ -10,13 +10,15 @@
     "deploy": "npx serverless deploy"
   },
   "dependencies": {
-    "express": "^4.19.2",
+    "@supabase/supabase-js": "^2.39.6",
     "ethers": "^6.10.0",
-    "@supabase/supabase-js": "^2.39.6"
+    "express": "^4.19.2",
+    "typescript": "^5.4.5"
   },
-  "devDependencies": {
-    "typescript": "^5.4.5",
-    "ts-node-dev": "^2.0.0",
-    "ts-node": "^10.9.2"
-  }
+ "devDependencies": {
+  "ts-node-dev": "^2.0.0",
+  "typescript": "^5.4.5",
+  "@types/express": "^4.17.21"
+}
+
 }
