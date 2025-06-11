@@ -1,30 +1,21 @@
-import express from "express";
-import { createClient } from "@supabase/supabase-js";
-import { ethers } from "ethers";
-
-// Configurazione Supabase
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import express, { Request, Response } from "express";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 
-app.get("/health", (req, res) => res.send("✅ App Runner is alive"));
+app.get("/", (_req: Request, res: Response) => {
+  res.send("✅ App ESM pronta!");
+});
 
-// Funzione finta di polling
-console.log("✅ Polling worker avviato");
+app.get("/health", (_req: Request, res: Response) => {
+  res.send("✅ App Runner is alive");
+});
 
-function checkPendingTransactions() {
-  const timestamp = new Date().toISOString();
-  console.log(`🔁 Polling eseguito alle ${timestamp}`);
-  // Simula logica di polling (da sostituire con vera logica in futuro)
-}
-
-// Poll ogni 15 secondi
-setInterval(checkPendingTransactions, 15000);
+setInterval(() => {
+  const now = new Date().toISOString();
+  console.log(`🔁 Polling... at ${now}`);
+}, 15000);
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`✅ Server running on http://localhost:${PORT}`);
 });
